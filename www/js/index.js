@@ -91,7 +91,13 @@ var app = {
         push.on('error', function(e) {
             console.log("push error = " + e.message);
         });
-
+		PushNotification.hasPermission(function(data) {
+			if (data.isEnabled) {
+				
+			}else{
+				alert("Your notifications are disabled");
+			}
+		});
         push.on('notification', function(data) {
             console.log('notification event');
 			if (data.additionalData.foreground) {

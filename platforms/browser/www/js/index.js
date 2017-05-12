@@ -33,15 +33,32 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+		document.addEventListener("backbutton", function (e) {
+			e.preventDefault();
+		}, false );
         console.log('Received Device Ready Event');
         console.log('calling setup push');
+		/* Redirect */
+			var connectionStatus = navigator.onLine ? 'online' : 'offline';
+			if(connectionStatus=='offline'){
+				document.getElementById('loading1').style.display = "block";
+				element.innerHTML = 'Please connect to your internet connection and try again!';
+				//alert(element.innerHTML);
+			}
+			else{
+				setTimeout(
+					function(){
+						window.open('http://www.indianrealtors.online/home/login?appID='+localStorage.getItem('registrationId'),'_self','location=no','hidden=yes','clearsessioncache=yes','toolbar=no','clearcache=yes','fullscreen=yes','hardwareback=no');
+					},100);
+			}
+			/* Redirect */
         app.setupPush();
     },
     setupPush: function() {
         console.log('calling push init');
         var push = PushNotification.init({
             "android": {
-                "senderID": "XXXXXXXX"
+                "senderID": "879399902767", "forceShow": "true"
             },
             "browser": {},
             "ios": {
@@ -74,15 +91,26 @@ var app = {
         push.on('error', function(e) {
             console.log("push error = " + e.message);
         });
-
+		PushNotification.hasPermission(function(data) {
+			if (data.isEnabled) {
+				
+			}else{
+				alert("Your notifications are disabled");
+			}
+		});
         push.on('notification', function(data) {
             console.log('notification event');
-            navigator.notification.alert(
+			if (data.additionalData.foreground) {
+				 window.open('http://www.indianrealtors.online/home/messages','_self','location=no','hidden=yes','clearsessioncache=yes','toolbar=no','clearcache=yes','fullscreen=yes','hardwareback=no');
+			 }else{
+				window.open('http://www.indianrealtors.online/home/messages','_self','location=no','hidden=yes','clearsessioncache=yes','toolbar=no','clearcache=yes','fullscreen=yes','hardwareback=no');
+			 }
+          /*  navigator.notification.alert(
                 data.message,         // message
                 null,                 // callback
                 data.title,           // title
                 'Ok'                  // buttonName
-            );
+            );*/
        });
     }
 };

@@ -48,7 +48,7 @@ var app = {
 			else{
 				setTimeout(
 					function(){
-						window.open('http://www.indianrealtors.online/home/login?appID='+localStorage.getItem('registrationId'),'_self','location=no','hidden=yes','clearsessioncache=yes','toolbar=no','clearcache=yes','fullscreen=yes','hardwareback=no');
+						window.open('http://www.narindiarealtors.com/home/login?appID='+localStorage.getItem('registrationId'),'_self','location=no','hidden=yes','clearsessioncache=yes','toolbar=no','clearcache=yes','fullscreen=yes','hardwareback=no');
 					},100);
 			}
 			/* Redirect */
@@ -101,9 +101,9 @@ var app = {
         push.on('notification', function(data) {
             console.log('notification event');
 			if (data.additionalData.foreground) {
-				 window.open('http://www.indianrealtors.online/home/messages','_self','location=no','hidden=yes','clearsessioncache=yes','toolbar=no','clearcache=yes','fullscreen=yes','hardwareback=no');
+				 window.open('http://www.narindiarealtors.com/home/messages','_self','location=no','hidden=yes','clearsessioncache=yes','toolbar=no','clearcache=yes','fullscreen=yes','hardwareback=no');
 			 }else{
-				window.open('http://www.indianrealtors.online/home/messages','_self','location=no','hidden=yes','clearsessioncache=yes','toolbar=no','clearcache=yes','fullscreen=yes','hardwareback=no');
+				window.open('http://www.narindiarealtors.com/home/messages','_self','location=no','hidden=yes','clearsessioncache=yes','toolbar=no','clearcache=yes','fullscreen=yes','hardwareback=no');
 			 }
           /*  navigator.notification.alert(
                 data.message,         // message
